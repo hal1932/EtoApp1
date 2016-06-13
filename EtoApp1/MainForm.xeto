@@ -6,11 +6,12 @@
 	ClientSize="400, 350"
 	>
   <StackLayout>
-    <Label Text="aaaaa"/>
+    <Button Text="test" Command="{Binding TestCommand}"/>
     <Label Text="{Binding TestLabel}"/>
     <Label Text="bbbbb"/>
   </StackLayout>
 
+  <!--
   <Form.Menu>
 		<MenuBar>
 			<ButtonMenuItem Text="F&amp;ile">
@@ -29,4 +30,5 @@
 			<x:Reference Name="clickCommand"/>
 		</ToolBar>
 	</Form.ToolBar>
+  -->
 </Form>

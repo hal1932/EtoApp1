@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,20 +10,24 @@ using System.Threading.Tasks;
 
 namespace EtoApp1
 {
-    class MainFormViewModel : INotifyPropertyChanged
+    class MainFormViewModel : BindableBase
     {
         private string _testLabel = "test";
         public string TestLabel
         {
             get { return _testLabel; }
-            set { _testLabel = value; OnPropertyChanged(); }
+            set { SetProperty(ref _testLabel, value); }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string memberName = null)
+        private DelegateCommand _testCommand;
+        public DelegateCommand TestCommand
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
+            get { return _testCommand ?? (_testCommand = new DelegateCommand(Test)); }
+        }
+
+        private void Test()
+        {
+            TestLabel += "a";
         }
     }
 }
